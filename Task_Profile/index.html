@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Card</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="page">
+    <article class="card" data-testid="test-profile-card" aria-label="User profile">
+      <figure class="card__media">
+        <img
+          data-testid="test-user-avatar"
+          src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=320&q=80"
+          alt="Portrait of Alex Chen smiling in natural light"
+          width="128"
+          height="128"
+          loading="lazy"
+        />
+        <figcaption class="card__caption">Profile photo</figcaption>
+      </figure>
+
+      <div class="card__body">
+        <header class="card__header">
+          <h2 class="card__name" data-testid="test-user-name">Alex Chen</h2>
+          <p class="card__time-row">
+            <span class="card__time-label">Time (ms)</span>
+            <output
+              class="card__time"
+              data-testid="test-user-time"
+              aria-live="polite"
+              aria-atomic="true"
+            ></output>
+          </p>
+        </header>
+
+        <p class="card__bio" data-testid="test-user-bio">
+          Frontend engineer focused on semantic HTML, accessible components, and layouts that stay
+          stable from 320px to wide screens. I ship testable UI with clear focus order and readable
+          contrast.
+        </p>
+
+        <div class="card__upload">
+          <label class="card__upload-label" for="avatar-upload">Change photo</label>
+          <input
+            id="avatar-upload"
+            class="card__upload-input"
+            type="file"
+            accept="image/*"
+            aria-label="Upload a profile image"
+          />
+        </div>
+
+        <nav class="card__social" aria-label="Social links" data-testid="test-user-social-links">
+          <a
+            class="card__link"
+            data-testid="test-user-social-twitter"
+            href="https://twitter.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Twitter
+          </a>
+          <a
+            class="card__link"
+            data-testid="test-user-social-github"
+            href="https://github.com/Swiss-hub"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub
+          </a>
+          <a
+            class="card__link"
+            data-testid="test-user-social-linkedin"
+            href="https://www.linkedin.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            LinkedIn
+          </a>
+        </nav>
+
+        <section class="card__lists" aria-label="Preferences">
+          <section class="card__list-block" aria-labelledby="hobbies-heading">
+            <h3 id="hobbies-heading" class="card__list-title">Hobbies</h3>
+            <ul class="card__list" data-testid="test-user-hobbies" role="list">
+              <li>Building UI components</li>
+              <li>Design systems</li>
+              <li>Photography walks</li>
+            </ul>
+          </section>
+
+          <section class="card__list-block" aria-labelledby="dislikes-heading">
+            <h3 id="dislikes-heading" class="card__list-title">Dislikes</h3>
+            <ul class="card__list" data-testid="test-user-dislikes" role="list">
+              <li>Low-contrast gray text</li>
+              <li>Layouts that overflow on mobile</li>
+              <li>Missing focus indicators</li>
+            </ul>
+          </section>
+        </section>
+      </div>
+    </article>
+  </main>
+
+  <script src="./main.js"></script>
+</body>
+</html>
