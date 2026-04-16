@@ -7,6 +7,8 @@
 
   --priority: #ffcc66;
   --status: #7dd3fc;
+  --overdue: #fb7185;
+  --overdue-bg: rgba(251, 113, 133, 0.14);
 
   --danger: #ff5c7a;
   --danger-bg: rgba(255, 92, 122, 0.12);
@@ -52,7 +54,7 @@ body {
   overflow: hidden;
 }
 
-.card__header {
+.card-header {
   display: grid;
   gap: 10px;
 }
@@ -63,6 +65,13 @@ body {
   justify-content: space-between;
   gap: 12px;
   flex-wrap: wrap;
+}
+
+.controls {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: flex-start;
 }
 
 .complete {
@@ -82,6 +91,26 @@ body {
   gap: 8px;
   flex-wrap: wrap;
   justify-content: flex-end;
+}
+
+.priority-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  align-self: center;
+}
+
+.priority-indicator--low {
+  background: rgba(52, 211, 153, 0.9);
+}
+
+.priority-indicator--medium {
+  background: rgba(251, 191, 36, 0.95);
+}
+
+.priority-indicator--high {
+  background: rgba(248, 113, 113, 0.95);
 }
 
 .badge {
@@ -124,6 +153,24 @@ body {
   overflow-wrap: anywhere;
 }
 
+.description-wrap {
+  margin-top: 6px;
+  display: grid;
+  gap: 10px;
+}
+
+.collapsible {
+  border-left: 3px solid rgba(255, 255, 255, 0.12);
+  padding-left: 10px;
+}
+
+.collapsible.is-collapsed .description {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
 .meta {
   margin-top: 14px;
   display: grid;
@@ -140,6 +187,18 @@ body {
 .remaining {
   color: var(--text);
   font-weight: 650;
+}
+
+.overdue {
+  justify-self: start;
+  width: fit-content;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(251, 113, 133, 0.45);
+  background: var(--overdue-bg);
+  color: #ffd7df;
+  font-size: 12px;
+  font-weight: 750;
 }
 
 .tags {
@@ -196,6 +255,12 @@ body {
   cursor: pointer;
 }
 
+.btn--small {
+  padding: 8px 10px;
+  font-size: 12px;
+  width: fit-content;
+}
+
 .btn--ghost:hover {
   background: rgba(255, 255, 255, 0.10);
 }
@@ -227,6 +292,73 @@ body {
   color: #062014;
 }
 
+.is-done .remaining {
+  color: rgba(234, 240, 255, 0.9);
+}
+
+.is-overdue:not(.is-done) .remaining {
+  color: #ffd7df;
+}
+
+.is-overdue:not(.is-done) .due {
+  color: #ffd7df;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.field--inline {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.field__label {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.field__control {
+  width: 100%;
+  min-width: 0;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  font: inherit;
+}
+
+.field__control:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.grid-2 {
+  display: grid;
+  gap: 12px;
+}
+
+.edit {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.edit__form {
+  display: grid;
+  gap: 12px;
+}
+
+.actions--edit {
+  justify-content: flex-start;
+}
+
 @media (min-width: 700px) {
   .page {
     padding: 28px;
@@ -239,5 +371,9 @@ body {
 
   .title {
     font-size: 19px;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr 1fr;
   }
 }

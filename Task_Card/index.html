@@ -16,7 +16,28 @@
                         <label for="todo-complete">Mark Complete</label>
                     </div>
 
+                    <div class="controls">
+                        <div class="field field--inline">
+                            <label class="field__label" for="todo-status-select">Status</label>
+                            <select
+                              id="todo-status-select"
+                              class="field__control"
+                              data-testid="test-todo-status-control"
+                              aria-label="Todo status"
+                            >
+                                <option value="Pending">Pending</option>
+                                <option value="In Progress" selected>In Progress</option>
+                                <option value="Done">Done</option>
+                            </select>
+                        </div>
+                    </div>
+
                     <div class="badges">
+                        <span
+                          class="priority-indicator priority-indicator--high"
+                          data-testid="test-todo-priority-indicator"
+                          aria-label="Priority indicator"
+                        ></span>
                         <span class="badge badge--priority" data-testid="test-todo-priority" aria-label="Priority">
                             High
                         </span>
@@ -28,13 +49,39 @@
                 <h2 class="title" data-testid="test-todo-title">Design review for landing page</h2>
             </header>
 
-            <p class="description" data-testid="test-todo-description">
-                My Final Submission on spacing, typography, and mobile layout. Making sure there's focus states and ensuring no horizontal overflow at 320px.
-            </p>
+            <section class="description-wrap" aria-label="Description">
+                <div
+                  id="todo-collapsible"
+                  class="collapsible is-collapsed"
+                  data-testid="test-todo-collapsible-section"
+                >
+                    <p class="description" data-testid="test-todo-description">
+                        My Final Submission on spacing, typography, and mobile layout. Making sure there's focus states and ensuring no horizontal overflow at 320px.
+                    </p>
+                </div>
+                <button
+                  type="button"
+                  class="btn btn--ghost btn--small"
+                  data-testid="test-todo-expand-toggle"
+                  aria-expanded="false"
+                  aria-controls="todo-collapsible"
+                >
+                    Expand
+                </button>
+            </section>
 
             <section class="meta" aria-label="Due date">
                 <time class="due" data-testid="test-todo-due-date"></time>
                 <time class="remaining" data-testid="test-todo-time-remaining" aria-live="polite"></time>
+                <span
+                  class="overdue"
+                  data-testid="test-todo-overdue-indicator"
+                  role="status"
+                  aria-label="Overdue"
+                  hidden
+                >
+                    Overdue
+                </span>
             </section>
 
             <section class="tags" aria-label="Tags">
@@ -54,9 +101,73 @@
                     Delete
                 </button>
             </footer>
+
+            <section
+              class="edit"
+              data-testid="test-todo-edit-form"
+              aria-label="Edit todo"
+              hidden
+            >
+                <form class="edit__form" id="todo-edit-form">
+                    <div class="field">
+                        <label class="field__label" for="edit-title">Title</label>
+                        <input
+                          id="edit-title"
+                          class="field__control"
+                          type="text"
+                          data-testid="test-todo-edit-title-input"
+                          autocomplete="off"
+                        />
+                    </div>
+
+                    <div class="field">
+                        <label class="field__label" for="edit-description">Description</label>
+                        <textarea
+                          id="edit-description"
+                          class="field__control"
+                          rows="4"
+                          data-testid="test-todo-edit-description-input"
+                        ></textarea>
+                    </div>
+
+                    <div class="grid-2">
+                        <div class="field">
+                            <label class="field__label" for="edit-priority">Priority</label>
+                            <select
+                              id="edit-priority"
+                              class="field__control"
+                              data-testid="test-todo-edit-priority-select"
+                            >
+                                <option value="Low">Low</option>
+                                <option value="Medium">Medium</option>
+                                <option value="High">High</option>
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <label class="field__label" for="edit-due">Due date</label>
+                            <input
+                              id="edit-due"
+                              class="field__control"
+                              type="datetime-local"
+                              data-testid="test-todo-edit-due-date-input"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="actions actions--edit" aria-label="Edit actions">
+                        <button type="submit" class="btn" data-testid="test-todo-save-button">
+                            Save
+                        </button>
+                        <button type="button" class="btn btn--ghost" data-testid="test-todo-cancel-button">
+                            Cancel
+                        </button>
+                    </div>
+                </form>
+            </section>
         </article>
     </main>
 
-    <script src="main.js"></script>
+    <script src="./main.js"></script>
 </body>
 </html>
