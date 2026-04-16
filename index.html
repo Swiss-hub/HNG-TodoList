@@ -5,16 +5,212 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HNG Frontend Tasks</title>
   <style>
-    body { font-family: system-ui, sans-serif; margin: 2rem; line-height: 1.5; }
-    a { display: inline-block; margin-right: 1rem; }
+    :root {
+      --bg: #0b1220;
+      --surface: #0f1a2e;
+      --text: #eef3ff;
+      --muted: #9fb0d4;
+      --border: rgba(255, 255, 255, 0.12);
+      --accent: #a78bfa;
+      --accent-soft: rgba(167, 139, 250, 0.22);
+      --cyan-soft: rgba(125, 211, 252, 0.14);
+      --card-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      height: 100%;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100%;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans",
+        sans-serif;
+      color: var(--text);
+      background: radial-gradient(900px 520px at 18% -5%, var(--accent-soft), transparent 55%),
+        radial-gradient(800px 480px at 92% 15%, var(--cyan-soft), transparent 50%),
+        var(--bg);
+      line-height: 1.55;
+    }
+
+    .page {
+      min-height: 100%;
+      padding: clamp(1.25rem, 4vw, 2.5rem);
+      display: grid;
+      place-items: center;
+    }
+
+    .shell {
+      width: 100%;
+      max-width: 640px;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: clamp(1.75rem, 4vw, 2.5rem);
+    }
+
+    .hero__eyebrow {
+      margin: 0 0 0.5rem;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .hero__title {
+      margin: 0 0 0.65rem;
+      font-size: clamp(1.65rem, 4vw, 2.1rem);
+      font-weight: 750;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .hero__subtitle {
+      margin: 0 auto;
+      max-width: 34ch;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .cards {
+      display: grid;
+      gap: 1rem;
+    }
+
+    @media (min-width: 560px) {
+      .cards {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.1rem;
+      }
+    }
+
+    .card-link {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.65rem;
+      padding: 1.15rem 1.2rem;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: linear-gradient(165deg, rgba(255, 255, 255, 0.07), transparent 42%), var(--surface);
+      box-shadow: var(--card-shadow);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+      min-height: 100%;
+    }
+
+    .card-link:hover {
+      transform: translateY(-2px);
+      border-color: rgba(167, 139, 250, 0.35);
+      box-shadow: 0 20px 56px rgba(0, 0, 0, 0.45);
+    }
+
+    .card-link:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    .card-link__badge {
+      font-size: 0.7rem;
+      font-weight: 750;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #1a1306;
+      background: #ffcc66;
+      padding: 0.28rem 0.55rem;
+      border-radius: 999px;
+    }
+
+    .card-link__badge--profile {
+      color: #001826;
+      background: #7dd3fc;
+    }
+
+    .card-link__title {
+      margin: 0;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    .card-link__desc {
+      margin: 0;
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .card-link__cta {
+      margin-top: auto;
+      font-size: 0.8rem;
+      font-weight: 650;
+      color: #c4b5fd;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .card-link__cta::after {
+      content: "→";
+      transition: transform 0.18s ease;
+    }
+
+    .card-link:hover .card-link__cta::after {
+      transform: translateX(3px);
+    }
+
+    .footer {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.78rem;
+      color: rgba(159, 176, 212, 0.75);
+    }
   </style>
 </head>
 <body>
-  <h1>HNG Frontend Tasks</h1>
-  <p>Open each task:</p>
-  <p>
-    <a href="/Task_Card/">Stage 1a — Todo Card</a>
-    <a href="/Task_Profile/">Stage 1b — Profile Card</a>
-  </p>
+  <main class="page">
+    <div class="shell">
+      <header class="hero">
+        <p class="hero__eyebrow">Swiss-hub · HNG-TodoList</p>
+        <h1 class="hero__title">Frontend task hub</h1>
+        <p class="hero__subtitle">
+          Pick a deliverable below. Each opens in full view—same look and feel as your staged cards.
+        </p>
+      </header>
+
+      <nav class="cards" aria-label="Task links">
+        <a class="card-link" href="/Task_Card/">
+          <span class="card-link__badge">Stage 1a</span>
+          <h2 class="card-link__title">Todo card</h2>
+          <p class="card-link__desc">
+            Interactive todo: edit mode, status sync, expand/collapse, overdue, and time logic.
+          </p>
+          <span class="card-link__cta">Open Task_Card</span>
+        </a>
+
+        <a class="card-link" href="/Task_Profile/">
+          <span class="card-link__badge card-link__badge--profile">Stage 1b</span>
+          <h2 class="card-link__title">Profile card</h2>
+          <p class="card-link__desc">
+            Accessible profile layout, live time in ms, social links, hobbies &amp; dislikes.
+          </p>
+          <span class="card-link__cta">Open Task_Profile</span>
+        </a>
+      </nav>
+
+      <footer class="footer">
+        Deployed on Vercel · paths <code>/Task_Card/</code> and <code>/Task_Profile/</code>
+      </footer>
+    </div>
+  </main>
 </body>
 </html>
