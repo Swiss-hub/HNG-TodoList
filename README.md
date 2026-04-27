@@ -1,4 +1,4 @@
-# Task Card (Todo Card)
+# Task Card (Todo Card) / Profile Card
 
 A simple, responsive **Todo Card** UI built with **HTML, CSS, and vanilla JavaScript**.
 
@@ -65,8 +65,8 @@ Then open the URL shown in your terminal and navigate to `/Task_Card` or `/Task_
 
 If Pages is configured for the repo root, typical URLs are:
 
-- Todo card: `https://<user>.github.io/<repo>/Task_Card/`
-- Profile card: `https://<user>.github.io/<repo>/Task_Profile/`
+- Todo card: `https://hng-todo-list-3ymg9nhai-ilechukwufran6x-5598s-projects.vercel.app/Task_Card/`
+- Profile card: `https://hng-todo-list-3ymg9nhai-ilechukwufran6x-5598s-projects.vercel.app/Task_Profile/`
 
 ## Notes
 
